@@ -1,0 +1,96 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+  animation-delay: 0.5s;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: backwards;
+}
+
+.main-container {
+  height: 100%;
+  margin: 0 auto;
+  padding: 50px 0;
+  max-width: 980px;
+  text-align: center;
+}
+
+.main-container ul {
+  display: grid;
+  margin-top: 50px;
+  list-style: none;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+}
+
+.main-container ul li {
+  display: flex;
+  flex-direction: column;
+  animation-delay: 0s;
+}
+
+.main-container ul li img {
+  max-width: 100%;
+  border-radius: 5px 5px 0 0;
+}
+
+.main-container ul li footer {
+  padding: 15px 20px;
+  flex: 1;
+  text-align: left;
+  background: #ffffff;
+  border-radius: 0 0 5px 5px;
+}
+
+.main-container ul li footer strong {
+  font-size: 16px;
+  color: #333333;
+}
+
+.main-container ul li footer p {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #999999;
+  line-height: 20px;
+}
+
+.main-container ul li .buttons {
+  display: grid;
+  margin-top: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+
+.main-container ul li .buttons button {
+  height: 50px;
+  background: #ffffff;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+.main-container ul li .buttons button:hover {
+  transform: translateY(-5px);
+  transition: all 0.2s;
+}
+
+.main-container .empty {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #999999;
+}
