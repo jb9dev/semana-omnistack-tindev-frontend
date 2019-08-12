@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
+import io from "socket.io-client";
 import { Link } from "react-router-dom";
 import api from "../services/api";
 
 import "./Main.css";
-import logo from "../SVGs/logo.svg";
-import dislike from "../SVGs/dislike.svg";
-import like from "../SVGs/like.svg";
+import logo from "../assets/logo.svg";
+import dislike from "../assets/dislike.svg";
+import like from "../assets/like.svg";
 
 export default function Main({ match }) {
   const [devsList, setDevsList] = useState([]);
+  const [matchDev, setMatchDev] = useState(true); //TODO: deixar null por padrão, true será apenas para estilizar. Seria interessante se isso fosse um array de objetos, pois se tivessem vários matches, daria para controlar isso melhor
 
   useEffect(() => {
+    // TODO: Seria interessante que a lista de devs fosse atualizada toda vez que um novo usuário se cadastra
     const getDevsList = async () => {
       const response = await api.get("/devs?filtered=true", {
         headers: {
@@ -22,6 +25,18 @@ export default function Main({ match }) {
     };
 
     getDevsList();
+  }, [match.params.id]);
+
+  useEffect(() => {
+    const socket = io("http://localhost:3333", {
+      query: { user: match.params.id }
+    });
+
+    // TODO: Testar acessando com dois usuários e dando match de um para o outro
+    socket.on("match", dev => {
+      console.log(dev);
+      setMatchDev(dev);
+    });
   }, [match.params.id]);
 
   const handleDislike = async id => {
@@ -80,6 +95,9 @@ export default function Main({ match }) {
           </p>
         </div>
       )}
+      // TODO: Verificar se deu match para renderizar lightbox com as
+      informações do dev que deu o match. Será possível fechar a lightbox
+      setando matchDev como null
     </div>
   );
 }
