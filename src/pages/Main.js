@@ -95,9 +95,9 @@ export default function Main({ match }) {
           </p>
         </div>
       )}
-      // TODO: Verificar se deu match para renderizar lightbox com as
+      {/* TODO: Verificar se deu match para renderizar lightbox com as
       informações do dev que deu o match. Será possível fechar a lightbox
-      setando matchDev como null
+      setando matchDev como null */}
     </div>
   );
 }
